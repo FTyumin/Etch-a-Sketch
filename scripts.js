@@ -9,33 +9,27 @@ function value() {
     return opacity;
 };
 
-
 function createGrid(sideLength) {
     clearGrid();
     let cellSize = container.clientHeight / sideLength;
-    // console.log(cellSize);
     for(let i=0;i<sideLength;i++) {
         let div = document.createElement('div');
         div.style.height = `${container.clientHeight}px`
-        console.log(div.style.height);
         div.style.width = `${cellSize}px`;
-        
-        div.setAttribute("id", "main")
+        div.setAttribute("id", "main");
+
         for(let j=0;j<sideLength;j++) {
             let innerDiv = document.createElement('div');
             innerDiv.style.height = `${cellSize}px`;
             innerDiv.style.width = `${cellSize}px`;
-            
+
             innerDiv.addEventListener("mouseover", () => {
                 // generating random color, code from css tricks
                 let randomColor = Math.floor(Math.random()*16777215).toString(16);
-            console.log("Event triggered");
-            let color = '#' + randomColor;
+                let color = '#' + randomColor;
             
-            innerDiv.style.background = color;
-            
-            innerDiv.style.opacity =value();
-            
+                innerDiv.style.background = color;
+                innerDiv.style.opacity =value();
             })
             innerDiv.setAttribute("class", "grid");
             div.appendChild(innerDiv);
@@ -51,8 +45,6 @@ function clearGrid() {
     }
 }
 
-createGrid(4);
-
 let button = document.querySelector("button");
 button.addEventListener("click", () => {
 
@@ -60,3 +52,5 @@ button.addEventListener("click", () => {
     clearGrid();
     createGrid(sideLength);
 })
+
+createGrid(4);
